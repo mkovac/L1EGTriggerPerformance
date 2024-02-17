@@ -28,7 +28,7 @@ scram b -j 8
 
 Then clone the repository:
 ```
-git clone https://github.com/mkovac/L1EgammaPerformance.git
+git clone https://github.com/mkovac/L1EGTriggerPerformance.git
 scram b -j 8
 ```
 Now you have set up the work directory. You should go to the L1EgammaPerformance/EGTagAndProbe/test directory and run scripts there. 
