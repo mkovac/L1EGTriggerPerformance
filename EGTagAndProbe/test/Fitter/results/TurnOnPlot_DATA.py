@@ -30,7 +30,7 @@ class TurnOnPlot:
       self.turnons = []
       self.plotDir = "Plots/"
       self.xRange = (10, 120)
-      self.xTitle = "p_{T}^{offl} [GeV]"
+      self.xTitle = "p_{T}^{offline} [GeV]"
       #self.legendPosition = (0.6,0.2,0.9,0.4)
       self.legendPosition = (0.4,0.2,0.9,0.6)
       self.setPlotStyle()
@@ -47,7 +47,7 @@ class TurnOnPlot:
       hDummy = ROOT.TH1F("hDummy_"+self.name, self.name, 1, self.xRange[0], self.xRange[1])
       hDummy.SetAxisRange(0, 1.05, "Y")
       if 'diff' in self.name:
-         hDummy.SetAxisRange(-0.1,0.1,'Y')
+         hDummy.SetAxisRange(-0.5,0.5,'Y')
       hDummy.SetXTitle(self.xTitle)
       #hDummy.SetYTitle("Test")
       hDummy.SetYTitle("Efficiency")
@@ -62,8 +62,8 @@ class TurnOnPlot:
       xpos  = 0.15
       ypos  = 0.98
 
-      CMSbox       = ROOT.TLatex  (xpos, ypos         , "CMS")
-      extraTextBox = ROOT.TLatex  (xpos + 0.13, ypos, "Preliminary 2023")
+      CMSbox       = ROOT.TLatex  (xpos,        ypos + 0.007, "CMS")
+      extraTextBox = ROOT.TLatex  (xpos + 0.13, ypos - 0.005, "Preliminary 2023")
       CMSbox.SetNDC()
       extraTextBox.SetNDC()
       CMSbox.SetTextSize(cmsTextSize)
@@ -85,7 +85,7 @@ class TurnOnPlot:
       # lumi_num = float(cfg.readOption ("general::lumi"))
       # lumi_num = lumi_num/1000. # from pb-1 to fb-1
       # lumi = "%.1f fb^{-1} (13 TeV)" % lumi_num
-      lumi = "0.1 fb^{-1} (13 TeV)"
+      lumi = "893.463 pb^{-1} (13 TeV)"
       lumibox = ROOT.TLatex  (0.953, 0.95, lumi)
       lumibox.SetNDC()
       lumibox.SetTextAlign(31)
@@ -130,10 +130,10 @@ class TurnOnPlot:
       lumibox.Draw()
       #print ("DEBUG: " + self.plotDir+"/"+self.name+".eps")
       #canvas.Print(self.plotDir+"/"+self.name+".pdf", "pdf")
-      canvas.Print(self.plotDir+"/"+self.name+"_2023.png", "png")
+      canvas.Print(self.plotDir + "/" + self.name + ".pdf", "pdf")
       canvas.SetLogx(1)
-      hDummy.GetXaxis().SetRangeUser(1,1000)
-      canvas.Print(self.plotDir+"/"+self.name+"_2023_log.png", "png")
+      hDummy.GetXaxis().SetRangeUser(1, 1000)
+      canvas.Print(self.plotDir + "/" + self.name + "_log.pdf", "pdf")
 
 
    def setPlotStyle(self):

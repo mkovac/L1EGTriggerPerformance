@@ -3,6 +3,8 @@ import TurnOnPlot_DATA as TurnOnPlot
 from ROOT import RooCurve, RooHist, RooAbsData
 
 ROOT.gROOT.SetBatch(True)
+#ROOT.gInterpreter.AddIncludePath("./include")
+ROOT.gSystem.Load("/afs/cern.ch/work/m/mkovac/CMS/RUN_3/ECAL/CMSSW_13_3_0/src/L1EGTriggerPerformance/EGTagAndProbe/test/Fitter/obj/FuncCB_cpp.so")
 
 
 #========#
@@ -10,20 +12,16 @@ ROOT.gROOT.SetBatch(True)
 #========#
 
 path = "./RootFiles/DoubleWeights/DW_2p5/"
-plotPath = "Plots/DoubleWeights/DW_2p5/Emulated_vs_emulated_"
+plotPath = "Plots/DoubleWeights/DW_2p5/Default_vs_emulated_"
 
 #emulation = "DW_2p5_hasL1Emu_10"
 #emulation = "DW_2p5_hasL1Emu_iso10"
 
 #emulation = "DW_2p5_hasL1Emu_20"
-#emulation = "DW_2p5_hasL1Emu_20_2023"
 #emulation = "DW_2p5_hasL1Emu_iso20"
-emulation = "DW_2p5_hasL1Emu_iso20_2023"
 
-
-#emulation = "DW_2p5_hasL1Emu_30"
+emulation = "DW_2p5_hasL1Emu_30"
 #emulation = "DW_2p5_hasL1Emu_iso30"
-
 
 #emulation = "DW_2p5_hasL1Emu_40"
 #emulation = "DW_2p5_hasL1Emu_iso40"
@@ -53,7 +51,7 @@ emulation = "DW_2p5_hasL1Emu_iso20_2023"
 #emulation = "DW_0p5_hasL1Emu_iso40"
 
 
-inputFile = ROOT.TFile.Open(path + "Emulated_vs_emulated_" + emulation + ".root")
+inputFile = ROOT.TFile.Open(path + "Default_vs_emulated_" + emulation + ".root")
 
 
 #========#
@@ -61,10 +59,10 @@ inputFile = ROOT.TFile.Open(path + "Emulated_vs_emulated_" + emulation + ".root"
 #========#
 
 #path = "./RootFiles/Test/"
-#plotPath = "Plots/Test/Default_vs_emulated_"
+#plotPath = "./Plots/Test/Default_vs_emulated_"
 
-#emulation = "default_2023"
-#emulation = "default_emul_script_2023"
+#emulation = "default"
+#emulation = "default_emul_script"
 
 #inputFile = ROOT.TFile.Open(path + "Default_vs_emulated_" + emulation + ".root")
 
@@ -72,15 +70,15 @@ inputFile = ROOT.TFile.Open(path + "Emulated_vs_emulated_" + emulation + ".root"
 
 plots = []
 plots.append(TurnOnPlot.TurnOnPlot())
-plots[-1].name = "turnon_plot"
-plots[-1].xRange = (2, 600)
-plots[-1].legendPosition = (0.6,0.2,0.9,0.4)
+plots[-1].name = "Efficiency"
+plots[-1].xRange = (5, 1000)
+plots[-1].legendPosition = (0.6, 0.2, 0.9, 0.4)
 plots[-1].plotDir = plotPath + emulation
 
 plots.append(TurnOnPlot.TurnOnPlot())
-plots[-1].name = "turnon_diff_plot"
-plots[-1].xRange = (2, 600)
-plots[-1].legendPosition = (0.45,0.2,0.9,0.3)
+plots[-1].name = "Efficiency_difference"
+plots[-1].xRange = (5, 1000)
+plots[-1].legendPosition = (0.45, 0.2, 0.9, 0.3)
 plots[-1].plotDir = plotPath + emulation
 
 
@@ -92,8 +90,8 @@ fit.__class__ = ROOT.RooCurve
 
 turnon = TurnOnPlot.TurnOn(Name="Stage2", Histo=histo, Fit=fit,
                                     MarkerColor=ROOT.kBlack, MarkerStyle=21, LineColor=ROOT.kBlack, LineStyle=1,
-                                    Legend="Emulated (Default conditions)")
-#                                    Legend="Default")
+#                                    Legend="Default conditions: TnP_L1_emulated.py")
+                                    Legend="Default")
 
 histo2 = inputFile.Get("histo_Emulated")
 histo2.__class__ = ROOT.RooHist

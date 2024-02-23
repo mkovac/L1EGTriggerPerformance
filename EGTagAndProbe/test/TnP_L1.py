@@ -79,7 +79,7 @@ egmGsfElectronIDSequence = cms.Sequence(egmGsfElectronIDTask)
 
 if isData:
    from Configuration.AlCa.autoCond import autoCond
-   process.GlobalTag.globaltag = '124X_dataRun3_Prompt_v10'
+   process.GlobalTag.globaltag = '130X_dataRun3_Prompt_v4'
    process.load('L1EGTriggerPerformance.EGTagAndProbe.TagAndProbe_cff')
    process.source = cms.Source("PoolSource",
 #      fileNames = cms.untracked.vstring('/store/data/Run2022D/EGamma/MINIAOD/PromptReco-v2/000/357/734/00000/08a88559-12f4-47c8-a861-277665f2b549.root')

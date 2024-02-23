@@ -2,29 +2,35 @@
 
 CC = g++ -std=c++17
 UCFLAGS = -g -O3 -Wall -Wextra
-RUCFLAGS := $(root-config --cflags) -I${ROOFITSYS}/include/ -I./include/ -I./ext
+RUCFLAGS := $(root-config --cflags) -I${ROOFITSYS}/include/ -I./include/
 
-LIBS :=  $(root-config --libs) -lTreePlayer -lGpad -lHist -lRIO -lCore -L${ROOFITSYS}/lib/ -lRooFit  -lRooFitCore ./obj/FuncCB_cpp.so
+LIBS :=  $(root-config --libs) -lTreePlayer -lGpad -lHist -lRIO -lCore -L${ROOFITSYS}/lib/ -lRooFit -lRooFitCore -lGraf -lCling
 GLIBS := $(root-config --glibs)
 
 
 VPATH = ./src/
 
-SRC = main.cpp\
-      TurnonFit.cpp\
-      TurnonManager.cpp\
-      Utilities.cpp\
+SRC = Main.cpp\
+      L1EG.cpp\
+      Histograms.cpp\
+      Tree.cpp\
+      Settings.cpp\
+      Variables.cpp\
+      Fitter.cpp\
 
 
-INCLUDES = TurnonFit.h\
-           TurnonManager.h\
-           Utilities.h\
-    
+INCLUDES = L1EG.h\
+           Histograms.h\
+           Tree.h\
+           Settings.h\
+           Variables.h\
+           Fitter.h\
+
     
 OBJ = $(patsubst %.cpp,obj/%.o,$(SRC))
 
 
-all: run_fitter
+all: run
 
 
 obj/%.o: %.cpp
@@ -33,7 +39,7 @@ obj/%.o: %.cpp
 	@$(CC) -c $< $(UCFLAGS) $(RUCFLAGS) -o $@
    
 
-run_fitter: $(OBJ)
+run: $(OBJ)
 	@echo "==> Linking..."
 	@$(CC) $^ $(LIBS) $(GLIBS) -o $@
 
@@ -41,14 +47,14 @@ run_fitter: $(OBJ)
 clean:
 	@echo "==> Cleaning objects and executable"
 	@rm -f obj/*.o
-	@rm -f run_fitter
+	@rm -f run
 
 
 uninstall:
 	@echo "==> Uninstalling fitter"
 	@rm -f obj/*.o obj/*.so obj/*.d obj/*.pcm
 	@rm -f ext/*.so ext/*.d ext/*.pcm
-	@rm -f run_fitter
+	@rm -f run
 
 
 # $@ references the target file name

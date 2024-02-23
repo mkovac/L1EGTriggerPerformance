@@ -31,7 +31,7 @@
 #include "RooCurve.h"
 #include "RooFitResult.h"
 #include "RooRealVar.h"
-#include "../ext/FuncCB.h"
+#include "FuncCB.h"
 
 
 class TurnonFit

@@ -105,24 +105,24 @@ if isData:
 # Double weights #
 #================#  
     
-#   process.GlobalTag.toGet = cms.VPSet(
-#      cms.PSet(
-#    	   record = cms.string("EcalTPGOddWeightIdMapRcd"),
-##    	   tag = cms.string("EcalTPG_OddWeightIdMap_delta0p5_mc"),
+   process.GlobalTag.toGet = cms.VPSet(
+      cms.PSet(
+    	   record = cms.string("EcalTPGOddWeightIdMapRcd"),
+    	   tag = cms.string("EcalTPG_OddWeightIdMap_delta0p5_mc"),
 # 		   tag = cms.string("EcalTPG_OddWeightIdMap_delta2p5_mc"),
-# 		   connect = cms.string('frontier://FrontierProd/CMS_CONDITIONS')
-# 		   ),
-#      cms.PSet(
-#    	   record = cms.string("EcalTPGOddWeightGroupRcd"),
-# 		   tag = cms.string("EcalTPGOddWeightGroup_mc"),
-# 		   connect = cms.string('frontier://FrontierProd/CMS_CONDITIONS')
-# 		   ),
-#      cms.PSet(
-#    	   record = cms.string("EcalTPGTPModeRcd"),
-# 		   tag = cms.string("EcalTPG_TPMode_Killing_mc"),
-# 		   connect = cms.string('frontier://FrontierProd/CMS_CONDITIONS')
-# 		   ),
-# 		   
+ 		   connect = cms.string('frontier://FrontierProd/CMS_CONDITIONS')
+ 		   ),
+      cms.PSet(
+    	   record = cms.string("EcalTPGOddWeightGroupRcd"),
+ 		   tag = cms.string("EcalTPGOddWeightGroup_mc"),
+ 		   connect = cms.string('frontier://FrontierProd/CMS_CONDITIONS')
+ 		   ),
+      cms.PSet(
+    	   record = cms.string("EcalTPGTPModeRcd"),
+ 		   tag = cms.string("EcalTPG_TPMode_Killing_mc"),
+ 		   connect = cms.string('frontier://FrontierProd/CMS_CONDITIONS')
+ 		   ),
+ 		   
  		   
 #============================================#
 # Spike killer, linearization, and pedestals #
@@ -151,7 +151,7 @@ if isData:
 #         tag = cms.string("EcalTPGPedestals_319253_beginning_at_1"),
 #         connect =cms.string('sqlite_file:EcalTPG_trans_319253_pedes_319111_moved_to_1.db')
 #	      )
-#	        )
+	        )
        
    process.load('L1EGTriggerPerformance.EGTagAndProbe.TagAndProbe_cff')
     
